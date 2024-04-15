@@ -3,31 +3,41 @@
 /// ST10303017
 /// 
 /// This class is used to create a recipe object. The recipe object will have the following attributes:
-/// 
+/// -----------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml.Linq;
+//-----------------------------------------------------------------------------------------------------------//
 namespace ST10303017_PROG6221_POE.Classes
 {
+    //-----------------------------------------------------------------------------------------------------------//
     public class Recipe
     {
-        private string recipeName { get; set; }
+        public string recipeName { get; private set; }
         private int numIngredients { get; set; }
-        private string[] ingredients; // Array of ingredients
-        private string ingredientName { get; set; }
-        private int ingredientQuantity { get; set; }
-        private string ingredientMeasurement { get; set; }
-        private int numOfSteps { get; set; }
-        private string stepDescription { get; set; }
 
+        private Ingredient[] ingredients; 
+        private int numOfSteps { get; set; }
+        private string[] stepDescriptions { get; set; }
+
+        //-----------------------------------------------------------------------------------------------------------//
+        public Recipe(int numIngredients, int numOfSteps)
+        {
+            this.numIngredients = numIngredients;
+            this.numOfSteps = numOfSteps;
+            ingredients = new Ingredient[numIngredients];
+            stepDescriptions = new string[numOfSteps];
+        }
+
+        //-----------------------------------------------------------------------------------------------------------//
         public void inputRecipe()
         {
             Console.Write("Enter the name of the recipe: ");
-            string recipeName = Console.ReadLine();
+            recipeName = Console.ReadLine();
 
             Console.Write("Enter the number of ingredients: ");
             numIngredients = Convert.ToInt32(Console.ReadLine());
@@ -37,22 +47,23 @@ namespace ST10303017_PROG6221_POE.Classes
             for (int i = 0; i < numIngredients; i++)
             {
                 Console.Write("Enter the name of the ingredient: ");
-                ingredientName = Console.ReadLine();
+                string ingredientName = Console.ReadLine();
 
                 Console.Write("Enter the quantity of ingredients: ");
-                ingredientQuantity = Convert.ToInt32(Console.ReadLine());
+                int ingredientQuantity = Convert.ToInt32(Console.ReadLine());
 
                 Console.Write("Enter the ingredient unit of measurement: ");
-                ingredientMeasurement = Console.ReadLine();
+                string ingredientMeasurement = Console.ReadLine();
 
+                ingredients[i] = new Ingredient(ingredientName, ingredientQuantity, ingredientMeasurement);
                 Console.Write("Enter the number of steps: ");
                 int numOfSteps = Convert.ToInt32(Console.ReadLine());
 
-                for (int j = 0; j < numOfSteps; j++)
-                {
-                    Console.Write("Enter the description of each step: ");
-                    stepDescription = Console.ReadLine();
-                }
+            }
+            for (int j = 0; j < numOfSteps; j++)
+            {
+                Console.Write("Enter the description of step " + (j + 1) + ": ");
+                stepDescriptions[j] = Console.ReadLine();
             }
         }
 
@@ -62,19 +73,23 @@ namespace ST10303017_PROG6221_POE.Classes
             Console.WriteLine("Recipe Name: " + recipeName);
             Console.WriteLine("Number of Ingredients: " + numIngredients);
             Console.WriteLine("Ingredients: ");
-            for (int i = 0; i < numIngredients; i++)
+            foreach (var ingredient in ingredients)
             {
-                Console.WriteLine("Ingredient Name: " + ingredientName);
-                Console.WriteLine("Ingredient Quantity: " + ingredientQuantity);
-                Console.WriteLine("Ingredient Measurement: " + ingredientMeasurement);
+                if (ingredient != null)
+                {
+                    Console.WriteLine($"Ingredient Name: {ingredient.ingredientName}\nIngredient Quantity: {ingredient.ingredientQuantity}\nUnit of Measurement: {ingredient.ingredientMeasurement}");
+                }
             }
             Console.WriteLine("Number of Steps: " + numOfSteps);
             for (int j = 0; j < numOfSteps; j++)
             {
-                Console.WriteLine("Step Description: " + stepDescription);
+                Console.WriteLine($"Step {j + 1}: {stepDescriptions[j]}");
             }
 
         }
+
+        
+
 
     }
 }
