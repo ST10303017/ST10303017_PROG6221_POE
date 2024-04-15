@@ -88,7 +88,16 @@ namespace ST10303017_PROG6221_POE.Classes
 
         }
 
-        
+        public void scaleRecipe()
+        {
+            Console.Write("Enter the scale factor: ");
+            int scale = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < numIngredients; i++)
+            {
+                ingredients[i].ingredientQuantity *= scale;
+            }
+        }
+
 
 
     }
