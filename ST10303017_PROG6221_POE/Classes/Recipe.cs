@@ -98,7 +98,14 @@ namespace ST10303017_PROG6221_POE.Classes
             }
         }
 
-
+        public void clearRecipe()
+        {
+            recipeName = "";
+            numIngredients = 0;
+            numOfSteps = 0;
+            ingredients = null;
+            stepDescriptions = null;
+        }   
 
     }
 }
