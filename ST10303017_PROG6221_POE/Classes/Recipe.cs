@@ -45,7 +45,7 @@ namespace ST10303017_PROG6221_POE.Classes
                     if (!string.IsNullOrEmpty(recipeName))
                         break;
                     else
-                        throw new ArgumentException("Recipe name cannot be empty.");
+                        throw new ArgumentException("The Recipe name cannot be empty. Please try again.");
                 }
                 catch (Exception e)
                 {
@@ -53,10 +53,25 @@ namespace ST10303017_PROG6221_POE.Classes
                 }
             }
 
-
-            Console.Write("Enter the number of ingredients: ");
-            numIngredients = Convert.ToInt32(Console.ReadLine());
-            ingredients = new Ingredient[numIngredients];
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Enter the number of ingredients: ");
+                    if (int.TryParse(Console.ReadLine(), out int checkNumIngredients) && checkNumIngredients > 0)
+                    {
+                        numIngredients = checkNumIngredients;
+                        ingredients = new Ingredient[numIngredients];
+                        break; 
+                    }
+                    else
+                        throw new ArgumentException("Invalid input. Please enter a number that is greater than 0");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
 
             Console.WriteLine("Ingredients: ");
 
