@@ -229,7 +229,10 @@ namespace ST10303017_PROG6221_POE.Classes
             recipeName = "";
             numIngredients = 0;
             numOfSteps = 0;
-        }   
+            ingredients = new Ingredient[0]; 
+            stepDescriptions = new string[0]; 
+        }
+
 
         public void recipeMenu()
         {
