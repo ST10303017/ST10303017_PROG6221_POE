@@ -22,6 +22,7 @@ namespace ST10303017_PROG6221_POE.Classes
         public int numIngredients { get; set; }
 
         private Ingredient[] ingredients; 
+        private double originalQuantity { get; set; }
         private int numOfSteps { get; set; }
         private string[] stepDescriptions { get; set; }
 
@@ -50,16 +51,17 @@ namespace ST10303017_PROG6221_POE.Classes
                 string ingredientName = Console.ReadLine();
                 
                 Console.Write("Enter the quantity of ingredients: ");
-                int ingredientQuantity = Convert.ToInt32(Console.ReadLine());
+                double ingredientQuantity = Convert.ToInt32(Console.ReadLine());
+                originalQuantity = ingredientQuantity;
          
 
                 Console.Write("Enter the ingredient unit of measurement: ");
                 string ingredientMeasurement = Console.ReadLine();
 
-                ingredients[i] = new Ingredient(ingredientName, ingredientQuantity, ingredientMeasurement);
+                ingredients[i] = new Ingredient(ingredientName, ingredientQuantity, ingredientMeasurement, originalQuantity);
             }
             Console.Write("Enter the number of steps: ");
-            int numOfSteps = Convert.ToInt32(Console.ReadLine());
+            numOfSteps = Convert.ToInt32(Console.ReadLine());
             stepDescriptions = new string[numOfSteps];
             for (int j = 0; j < numOfSteps; j++)
             {
@@ -93,7 +95,7 @@ namespace ST10303017_PROG6221_POE.Classes
         public void scaleRecipe()
         {
             Console.Write("Enter the scale factor: ");
-            int scale = Convert.ToInt32(Console.ReadLine());
+            double scale = Convert.ToInt32(Console.ReadLine());
             for (int i = 0; i < numIngredients; i++)
             {
                 ingredients[i].ingredientQuantity *= scale;
@@ -113,8 +115,7 @@ namespace ST10303017_PROG6221_POE.Classes
             recipeName = "";
             numIngredients = 0;
             numOfSteps = 0;
-            ingredients = null;
-            stepDescriptions = null;
+            
         }   
 
         public void recipeMenu()
