@@ -171,15 +171,15 @@ namespace ST10303017_PROG6221_POE.Classes
         public void displayRecipe()
         {
             Recipe recipe = new Recipe();
-            Console.WriteLine("Recipe Name: " + recipeName);
-            Console.WriteLine("-------------------------------");
+            Console.WriteLine("\nRecipe Name: " + recipeName);
+            Console.WriteLine("-------------------------------------------");
             Console.WriteLine("Number of Ingredients: " + numIngredients);
             Console.WriteLine("Ingredients: ");
             foreach (Ingredient ingredient in ingredients)
             {
                 if (ingredient != null)
                 {
-                    Console.WriteLine($"Ingredient Name: {ingredient.ingredientName}\nIngredient Quantity: {ingredient.ingredientQuantity}\nUnit of Measurement: {ingredient.ingredientMeasurement}");
+                    Console.WriteLine($"Ingredient Name: {ingredient.ingredientName}\nIngredient Quantity: {ingredient.ingredientQuantity}\nUnit of Measurement: {ingredient.ingredientMeasurement}\n");
                 }
             }
             Console.WriteLine("Number of Steps: " + numOfSteps);
@@ -192,13 +192,29 @@ namespace ST10303017_PROG6221_POE.Classes
 
         public void scaleRecipe()
         {
-            Console.Write("Enter the scale factor: ");
-            double scale = Convert.ToInt32(Console.ReadLine());
+            double scaleFactor = 0;
+            bool validScale = false;
+            while (!validScale)
+            {
+                Console.Write("Enter the scale factor (0.5, 2, or 3): ");
+                string scaleInput = Console.ReadLine();
+
+                if (double.TryParse(scaleInput, out scaleFactor) && (scaleFactor == 0.5 || scaleFactor == 2 || scaleFactor == 3))
+                {
+                    validScale = true; 
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter 0.5, 2, or 3 for the factor");
+                }
+            }
+
             for (int i = 0; i < numIngredients; i++)
             {
-                ingredients[i].ingredientQuantity *= scale;
+                ingredients[i].ingredientQuantity = ingredients[i].ingredientQuantity*scaleFactor;
             }
         }
+
 
         public void resetIngredientQuantity()
         {
@@ -213,42 +229,43 @@ namespace ST10303017_PROG6221_POE.Classes
             recipeName = "";
             numIngredients = 0;
             numOfSteps = 0;
-            
         }   
 
         public void recipeMenu()
         {
             while (true)
             {
-                Console.WriteLine("-------------------------------");
+                Console.WriteLine("\n-------------------------------------------");
                 Console.WriteLine("WELCOME TO THE RECIPE MANAGER");
-                Console.WriteLine("-------------------------------");
+                Console.WriteLine("-------------------------------------------");
                 Console.WriteLine("1. Create Recipe");
                 Console.WriteLine("2. Display Recipe");
                 Console.WriteLine("3. Scale Recipe");
                 Console.WriteLine("4. Reset Ingredient Quantities");
                 Console.WriteLine("5. Clear Recipe");
                 Console.WriteLine("6. Exit Manager");
+                Console.WriteLine("-------------------------------------------");
                 Console.Write("Please choose one of the above options: ");
-                int choice = Convert.ToInt32(Console.ReadLine());
+                string choice = Console.ReadLine();
+                Console.WriteLine("-------------------------------------------");
                 switch (choice)
                 {
-                    case 1:
+                    case "1":
                         inputRecipe();
                         break;
-                    case 2:
+                    case "2":
                         displayRecipe();
                         break;
-                    case 3:
+                    case "3":
                         scaleRecipe();
                         break;
-                    case 4:
+                    case "4":
                         resetIngredientQuantity();
                         break;
-                    case 5:
+                    case "5":
                         clearRecipe();
                         break;
-                    case 6:
+                    case "6":
                         Environment.Exit(0);
                         break;
                     default:
