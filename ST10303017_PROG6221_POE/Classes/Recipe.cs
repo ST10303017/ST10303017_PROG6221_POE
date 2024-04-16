@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 //-----------------------------------------------------------------------------------------------------------//
 namespace ST10303017_PROG6221_POE.Classes
-{
+
     //-----------------------------------------------------------------------------------------------------------//
     public class Recipe
     {
@@ -40,11 +40,13 @@ namespace ST10303017_PROG6221_POE.Classes
             {
                 try
                 {
+                    Console.ResetColor();
                     Console.Write("Enter the name of the recipe: ");
                     recipeName = Console.ReadLine();
                     if (!string.IsNullOrEmpty(recipeName))
                         break;
                     else
+                        Console.ForegroundColor = ConsoleColor.Red;
                         throw new ArgumentException("Invalid input, the recipe name cannot be empty. Please try again.");
                 }
                 catch (Exception e)
@@ -57,6 +59,7 @@ namespace ST10303017_PROG6221_POE.Classes
             {
                 try
                 {
+                    Console.ResetColor();
                     Console.Write("Enter the number of ingredients: ");
                     if (int.TryParse(Console.ReadLine(), out int checkNumIngredients) && checkNumIngredients > 0)
                     {
@@ -65,6 +68,7 @@ namespace ST10303017_PROG6221_POE.Classes
                         break; 
                     }
                     else
+                        Console.ForegroundColor = ConsoleColor.Red;
                         throw new ArgumentException("Invalid input, number of ingredients must be greater than 0. Please try again");
                 }
                 catch (Exception e)
@@ -85,11 +89,13 @@ namespace ST10303017_PROG6221_POE.Classes
                 // Input for ingredient name
                 while (true)
                 {
+                    Console.ResetColor();
                     Console.Write("Enter the name of the ingredient: ");
                     ingredientName = Console.ReadLine();
                     if (!string.IsNullOrEmpty(ingredientName))
                         break; // Valid input, break the loop
                     else
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid input, ingredient name cannot be empty. Please try again.");
                 }
 
@@ -98,11 +104,13 @@ namespace ST10303017_PROG6221_POE.Classes
                 {
                     try
                     {
+                        Console.ResetColor();
                         Console.Write("Enter the quantity of the ingredient: ");
                         string quantityInput = Console.ReadLine();
                         if (double.TryParse(quantityInput, out ingredientQuantity) && ingredientQuantity > 0)
                             break; // Valid input, break the loop
                         else
+                            Console.ForegroundColor = ConsoleColor.Red;
                             throw new ArgumentException("Invalid input, quantity must be greater than 0. Please try again");
                     }
                     catch (Exception e)
@@ -114,11 +122,13 @@ namespace ST10303017_PROG6221_POE.Classes
                 // Input for ingredient unit of measurement
                 while (true)
                 {
+                    Console.ResetColor();
                     Console.Write("Enter the ingredient unit of measurement: ");
                     ingredientMeasurement = Console.ReadLine();
                     if (!string.IsNullOrEmpty(ingredientMeasurement))
                         break; // Valid input, break the loop
                     else
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid input, the unit of measurement cannot be empty. Please try again.");
                 }
 
@@ -131,6 +141,7 @@ namespace ST10303017_PROG6221_POE.Classes
             {
                 try
                 {
+                    Console.ResetColor();
                     Console.Write("Enter the number of steps: ");
                     if (int.TryParse(Console.ReadLine(), out int checkNumOfSteps) && checkNumOfSteps > 0)
                     {
@@ -139,6 +150,7 @@ namespace ST10303017_PROG6221_POE.Classes
                         break;
                     }
                     else
+                        Console.ForegroundColor = ConsoleColor.Red;
                         throw new ArgumentException("Invalid input. Please enter a number that is greater than 0");
                 }
                 catch (Exception e)
@@ -153,12 +165,15 @@ namespace ST10303017_PROG6221_POE.Classes
                 {   
                     try
                     {
+                        Console.ResetColor();
                         Console.Write("Enter the description of step " + (j + 1) + ": ");
                         stepDescriptions[j] = Console.ReadLine();
                         if (!string.IsNullOrEmpty(stepDescriptions[j]))
                             break;
                         else
+                            Console.ForegroundColor = ConsoleColor.Red;
                             throw new ArgumentException("The step description cannot be empty. Please try again.");
+                            
                     }
                     catch (Exception e)
                     {
@@ -171,8 +186,11 @@ namespace ST10303017_PROG6221_POE.Classes
         public void displayRecipe()
         {
             Recipe recipe = new Recipe();
-            Console.WriteLine("\nRecipe Name: " + recipeName);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n-------------------------------------------");
+            Console.WriteLine("RECIPE NAME: " + recipeName);
             Console.WriteLine("-------------------------------------------");
+            Console.ResetColor();
             Console.WriteLine("Number of Ingredients: " + numIngredients);
             Console.WriteLine("Ingredients: ");
             foreach (Ingredient ingredient in ingredients)
@@ -187,7 +205,9 @@ namespace ST10303017_PROG6221_POE.Classes
             {
                 Console.WriteLine($"Step {j + 1}: {stepDescriptions[j]}");
             }
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("-------------------------------------------");
+            Console.ResetColor();
         }
 
         public void scaleRecipe()
@@ -238,19 +258,25 @@ namespace ST10303017_PROG6221_POE.Classes
         {
             while (true)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\n-------------------------------------------");
                 Console.WriteLine("WELCOME TO THE RECIPE MANAGER");
                 Console.WriteLine("-------------------------------------------");
+                Console.ResetColor();
                 Console.WriteLine("1. Create Recipe");
                 Console.WriteLine("2. Display Recipe");
                 Console.WriteLine("3. Scale Recipe");
                 Console.WriteLine("4. Reset Ingredient Quantities");
                 Console.WriteLine("5. Clear Recipe");
                 Console.WriteLine("6. Exit Manager");
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("-------------------------------------------");
+                Console.ResetColor();
                 Console.Write("Please choose one of the above options: ");
                 string choice = Console.ReadLine();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("-------------------------------------------");
+                Console.ResetColor();
                 switch (choice)
                 {
                     case "1":
@@ -269,10 +295,15 @@ namespace ST10303017_PROG6221_POE.Classes
                         clearRecipe();
                         break;
                     case "6":
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Exiting Recipe Manager...");
+                        Console.ResetColor();
                         Environment.Exit(0);
                         break;
                     default:
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid input, please choose one of the options");
+                        Console.ResetColor();
                         break;
                 };
             }
