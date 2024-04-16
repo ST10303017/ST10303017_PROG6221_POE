@@ -36,8 +36,23 @@ namespace ST10303017_PROG6221_POE.Classes
         //-----------------------------------------------------------------------------------------------------------//
         public void inputRecipe()
         {
-            Console.Write("Enter the name of the recipe: ");
-            recipeName = Console.ReadLine();
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Enter the name of the recipe: ");
+                    recipeName = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(recipeName))
+                        break;
+                    else
+                        throw new ArgumentException("Recipe name cannot be empty.");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
 
             Console.Write("Enter the number of ingredients: ");
             numIngredients = Convert.ToInt32(Console.ReadLine());
