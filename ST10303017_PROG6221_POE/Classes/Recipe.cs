@@ -25,10 +25,8 @@ namespace ST10303017_PROG6221_POE.Classes
         private string[] stepDescriptions { get; set; }
 
         //-----------------------------------------------------------------------------------------------------------//
-        public Recipe(int numIngredients, int numOfSteps)
+        public Recipe()
         {
-            this.numIngredients = numIngredients;
-            this.numOfSteps = numOfSteps;
             ingredients = new Ingredient[numIngredients];
             stepDescriptions = new string[numOfSteps];
         }
@@ -42,7 +40,7 @@ namespace ST10303017_PROG6221_POE.Classes
             Console.Write("Enter the number of ingredients: ");
             numIngredients = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Ingredients: ");
+            Console.WriteLine("Ingredients: ");
 
             for (int i = 0; i < numIngredients; i++)
             {
@@ -56,10 +54,11 @@ namespace ST10303017_PROG6221_POE.Classes
                 string ingredientMeasurement = Console.ReadLine();
 
                 ingredients[i] = new Ingredient(ingredientName, ingredientQuantity, ingredientMeasurement);
-                Console.Write("Enter the number of steps: ");
-                int numOfSteps = Convert.ToInt32(Console.ReadLine());
+                
 
             }
+            Console.Write("Enter the number of steps: ");
+            int numOfSteps = Convert.ToInt32(Console.ReadLine());
             for (int j = 0; j < numOfSteps; j++)
             {
                 Console.Write("Enter the description of step " + (j + 1) + ": ");
@@ -106,6 +105,41 @@ namespace ST10303017_PROG6221_POE.Classes
             ingredients = null;
             stepDescriptions = null;
         }   
+
+        public void menu()
+        {
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("WELCOME TO THE RECIPE MANAGER");
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("1. Create Recipe");
+            Console.WriteLine("2. Display Recipe");
+            Console.WriteLine("3. Scale Recipe");
+            Console.WriteLine("4. Clear Recipe");
+            Console.WriteLine("5. Exit Manager");
+            Console.Write("Please choose one of the above options: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch(Console.ReadLine())
+            {
+                case "1":
+                    inputRecipe();
+                    break;
+                case "2":
+                    displayRecipe();
+                    break;
+                case "3":
+                    scaleRecipe();
+                    break;
+                case "4":
+                    clearRecipe();
+                    break;
+                case "5":
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Invalid input, please choose one of the options");
+                    break;
+            }
+        }
 
     }
 }
