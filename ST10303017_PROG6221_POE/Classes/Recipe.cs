@@ -110,10 +110,25 @@ namespace ST10303017_PROG6221_POE.Classes
                     Console.WriteLine(e.Message);
                 }
             }   
+
             for (int j = 0; j < numOfSteps; j++)
             {
-                Console.Write("Enter the description of step " + (j + 1) + ": ");
-                stepDescriptions[j] = Console.ReadLine();
+                while(true)
+                {   
+                    try
+                    {
+                        Console.Write("Enter the description of step " + (j + 1) + ": ");
+                        stepDescriptions[j] = Console.ReadLine();
+                        if (!string.IsNullOrEmpty(stepDescriptions[j]))
+                            break;
+                        else
+                            throw new ArgumentException("The step description cannot be empty. Please try again.");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }   
             }
         }
 
