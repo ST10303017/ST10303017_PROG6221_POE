@@ -77,6 +77,7 @@ namespace ST10303017_PROG6221_POE.Classes
 
             for (int i = 0; i < numIngredients; i++)
             {
+                
                 Console.Write("Enter the name of the ingredient: ");
                 string ingredientName = Console.ReadLine();
                 
@@ -90,9 +91,25 @@ namespace ST10303017_PROG6221_POE.Classes
 
                 ingredients[i] = new Ingredient(ingredientName, ingredientQuantity, ingredientMeasurement, originalQuantity);
             }
-            Console.Write("Enter the number of steps: ");
-            numOfSteps = Convert.ToInt32(Console.ReadLine());
-            stepDescriptions = new string[numOfSteps];
+            while(true)
+            {
+                try
+                {
+                    Console.Write("Enter the number of steps: ");
+                    if (int.TryParse(Console.ReadLine(), out int checkNumOfSteps) && checkNumOfSteps > 0)
+                    {
+                        numOfSteps = checkNumOfSteps;
+                        stepDescriptions = new string[numOfSteps];
+                        break;
+                    }
+                    else
+                        throw new ArgumentException("Invalid input. Please enter a number that is greater than 0");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }   
             for (int j = 0; j < numOfSteps; j++)
             {
                 Console.Write("Enter the description of step " + (j + 1) + ": ");
