@@ -11,7 +11,7 @@ namespace ST10303017_PROG6221_POE
         static void Main(string[] args)
         {
             Classes.Recipe recipeManager = new Classes.Recipe();
-            recipeManager.displayRecipe();
+            recipeManager.recipeMenu();
         }
     }
 }

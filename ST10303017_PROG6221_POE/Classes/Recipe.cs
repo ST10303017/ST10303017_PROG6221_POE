@@ -18,7 +18,7 @@ namespace ST10303017_PROG6221_POE.Classes
     public class Recipe
     {
         public string recipeName { get; private set; }
-        private int numIngredients { get; set; }
+        public int numIngredients { get; set; }
 
         private Ingredient[] ingredients; 
         private int numOfSteps { get; set; }
@@ -38,7 +38,8 @@ namespace ST10303017_PROG6221_POE.Classes
             recipeName = Console.ReadLine();
 
             Console.Write("Enter the number of ingredients: ");
-            numIngredients = Convert.ToInt32(Console.ReadLine());
+            int numIngredients = Convert.ToInt32(Console.ReadLine());
+            ingredients = new Ingredient[numIngredients];
 
             Console.WriteLine("Ingredients: ");
 
@@ -54,11 +55,10 @@ namespace ST10303017_PROG6221_POE.Classes
                 string ingredientMeasurement = Console.ReadLine();
 
                 ingredients[i] = new Ingredient(ingredientName, ingredientQuantity, ingredientMeasurement);
-                
-
             }
             Console.Write("Enter the number of steps: ");
             int numOfSteps = Convert.ToInt32(Console.ReadLine());
+            stepDescriptions = new string[numOfSteps];
             for (int j = 0; j < numOfSteps; j++)
             {
                 Console.Write("Enter the description of step " + (j + 1) + ": ");
@@ -68,11 +68,12 @@ namespace ST10303017_PROG6221_POE.Classes
 
         public void displayRecipe()
         {
-            inputRecipe();
+            Recipe recipe = new Recipe();
             Console.WriteLine("Recipe Name: " + recipeName);
+            Console.WriteLine("-------------------------------");
             Console.WriteLine("Number of Ingredients: " + numIngredients);
             Console.WriteLine("Ingredients: ");
-            foreach (var ingredient in ingredients)
+            foreach (Ingredient ingredient in ingredients)
             {
                 if (ingredient != null)
                 {
@@ -116,44 +117,44 @@ namespace ST10303017_PROG6221_POE.Classes
 
         public void recipeMenu()
         {
-            Console.WriteLine("-------------------------------");
-            Console.WriteLine("WELCOME TO THE RECIPE MANAGER");
-            Console.WriteLine("-------------------------------");
-            Console.WriteLine("1. Create Recipe");
-            Console.WriteLine("2. Display Recipe");
-            Console.WriteLine("3. Scale Recipe");
-            Console.WriteLine("4. Reset Ingredient Quantities");
-            Console.WriteLine("5. Clear Recipe");
-            Console.WriteLine("6. Exit Manager");
-            Console.Write("Please choose one of the above options: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
-            switch(Console.ReadLine())
+            while (true)
             {
-                case "1":
-                    inputRecipe();
-                    break;
-                case "2":
-                    displayRecipe();
-                    break;
-                case "3":
-                    scaleRecipe();
-                    break;
-                case "4":
-                    resetIngredientQuantity();
-                    break;
-                case "5":
-                    clearRecipe();
-                    break;
-                case "6":
-                    Environment.Exit(0);
-                    break;
-                default:
-                    Console.WriteLine("Invalid input, please choose one of the options");
-                    break;
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("WELCOME TO THE RECIPE MANAGER");
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("1. Create Recipe");
+                Console.WriteLine("2. Display Recipe");
+                Console.WriteLine("3. Scale Recipe");
+                Console.WriteLine("4. Reset Ingredient Quantities");
+                Console.WriteLine("5. Clear Recipe");
+                Console.WriteLine("6. Exit Manager");
+                Console.Write("Please choose one of the above options: ");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        inputRecipe();
+                        break;
+                    case 2:
+                        displayRecipe();
+                        break;
+                    case 3:
+                        scaleRecipe();
+                        break;
+                    case 4:
+                        resetIngredientQuantity();
+                        break;
+                    case 5:
+                        clearRecipe();
+                        break;
+                    case 6:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input, please choose one of the options");
+                        break;
+                };
             }
         }
-
-        public vo
-
     }
 }
