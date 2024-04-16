@@ -97,7 +97,7 @@ namespace ST10303017_PROG6221_POE.Classes
             }
         }
 
-        public void resetQuantity()
+        public void resetIngredientQuantity()
         {
             for (int i = 0; i < numIngredients; i++)
             {
@@ -122,8 +122,9 @@ namespace ST10303017_PROG6221_POE.Classes
             Console.WriteLine("1. Create Recipe");
             Console.WriteLine("2. Display Recipe");
             Console.WriteLine("3. Scale Recipe");
-            Console.WriteLine("4. Clear Recipe");
-            Console.WriteLine("5. Exit Manager");
+            Console.WriteLine("4. Reset Ingredient Quantities");
+            Console.WriteLine("5. Clear Recipe");
+            Console.WriteLine("6. Exit Manager");
             Console.Write("Please choose one of the above options: ");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch(Console.ReadLine())
@@ -138,9 +139,12 @@ namespace ST10303017_PROG6221_POE.Classes
                     scaleRecipe();
                     break;
                 case "4":
-                    clearRecipe();
+                    resetIngredientQuantity();
                     break;
                 case "5":
+                    clearRecipe();
+                    break;
+                case "6":
                     Environment.Exit(0);
                     break;
                 default:
@@ -149,7 +153,7 @@ namespace ST10303017_PROG6221_POE.Classes
             }
         }
 
-        public 
+        public vo
 
     }
 }
