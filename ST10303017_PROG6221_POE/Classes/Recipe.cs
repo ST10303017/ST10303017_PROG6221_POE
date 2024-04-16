@@ -45,7 +45,7 @@ namespace ST10303017_PROG6221_POE.Classes
                     if (!string.IsNullOrEmpty(recipeName))
                         break;
                     else
-                        throw new ArgumentException("The Recipe name cannot be empty. Please try again.");
+                        throw new ArgumentException("Invalid input, the recipe name cannot be empty. Please try again.");
                 }
                 catch (Exception e)
                 {
@@ -65,7 +65,7 @@ namespace ST10303017_PROG6221_POE.Classes
                         break; 
                     }
                     else
-                        throw new ArgumentException("Invalid input. Please enter a number that is greater than 0");
+                        throw new ArgumentException("Invalid input, number of ingredients must be greater than 0. Please try again");
                 }
                 catch (Exception e)
                 {
@@ -77,21 +77,57 @@ namespace ST10303017_PROG6221_POE.Classes
 
             for (int i = 0; i < numIngredients; i++)
             {
-                
-                Console.Write("Enter the name of the ingredient: ");
-                string ingredientName = Console.ReadLine();
-                
-                Console.Write("Enter the quantity of ingredients: ");
-                double ingredientQuantity = Convert.ToInt32(Console.ReadLine());
-                originalQuantity = ingredientQuantity;
-         
+                // Input for ingredient name
+                string ingredientName;
+                double ingredientQuantity;
+                string ingredientMeasurement;
 
-                Console.Write("Enter the ingredient unit of measurement: ");
-                string ingredientMeasurement = Console.ReadLine();
+                // Input for ingredient name
+                while (true)
+                {
+                    Console.Write("Enter the name of the ingredient: ");
+                    ingredientName = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(ingredientName))
+                        break; // Valid input, break the loop
+                    else
+                        Console.WriteLine("Invalid input, ingredient name cannot be empty. Please try again.");
+                }
 
+                // Input for ingredient quantity
+                while (true)
+                {
+                    try
+                    {
+                        Console.Write("Enter the quantity of the ingredient: ");
+                        string quantityInput = Console.ReadLine();
+                        if (double.TryParse(quantityInput, out ingredientQuantity) && ingredientQuantity > 0)
+                            break; // Valid input, break the loop
+                        else
+                            throw new ArgumentException("Invalid input, quantity must be greater than 0. Please try again");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message); // Prints error message if input is invalid
+                    }
+                }
+
+                // Input for ingredient unit of measurement
+                while (true)
+                {
+                    Console.Write("Enter the ingredient unit of measurement: ");
+                    ingredientMeasurement = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(ingredientMeasurement))
+                        break; // Valid input, break the loop
+                    else
+                        Console.WriteLine("Invalid input, the unit of measurement cannot be empty. Please try again.");
+                }
+
+                // Create the ingredient object with the originalQuantity set to the ingredientQuantity
+                double originalQuantity = ingredientQuantity; // This should ideally be handled inside the Ingredient class
                 ingredients[i] = new Ingredient(ingredientName, ingredientQuantity, ingredientMeasurement, originalQuantity);
+
             }
-            while(true)
+            while (true)
             {
                 try
                 {
