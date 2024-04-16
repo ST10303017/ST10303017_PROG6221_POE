@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -38,7 +39,7 @@ namespace ST10303017_PROG6221_POE.Classes
             recipeName = Console.ReadLine();
 
             Console.Write("Enter the number of ingredients: ");
-            int numIngredients = Convert.ToInt32(Console.ReadLine());
+            numIngredients = Convert.ToInt32(Console.ReadLine());
             ingredients = new Ingredient[numIngredients];
 
             Console.WriteLine("Ingredients: ");
@@ -47,9 +48,10 @@ namespace ST10303017_PROG6221_POE.Classes
             {
                 Console.Write("Enter the name of the ingredient: ");
                 string ingredientName = Console.ReadLine();
-
+                
                 Console.Write("Enter the quantity of ingredients: ");
                 int ingredientQuantity = Convert.ToInt32(Console.ReadLine());
+         
 
                 Console.Write("Enter the ingredient unit of measurement: ");
                 string ingredientMeasurement = Console.ReadLine();
