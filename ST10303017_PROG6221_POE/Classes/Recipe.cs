@@ -97,6 +97,14 @@ namespace ST10303017_PROG6221_POE.Classes
             }
         }
 
+        public void resetQuantity()
+        {
+            for (int i = 0; i < numIngredients; i++)
+            {
+                ingredients[i].ingredientQuantity = ingredients[i].originalQuantity;
+            }
+        }
+
         public void clearRecipe()
         {
             recipeName = "";
@@ -106,7 +114,7 @@ namespace ST10303017_PROG6221_POE.Classes
             stepDescriptions = null;
         }   
 
-        public void menu()
+        public void recipeMenu()
         {
             Console.WriteLine("-------------------------------");
             Console.WriteLine("WELCOME TO THE RECIPE MANAGER");
@@ -140,6 +148,8 @@ namespace ST10303017_PROG6221_POE.Classes
                     break;
             }
         }
+
+        public 
 
     }
 }
