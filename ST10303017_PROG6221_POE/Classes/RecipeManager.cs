@@ -15,6 +15,7 @@ namespace ST10303017_PROG6221_POE.Classes
 
         public void AddRecipe(Recipe recipe)
         {
+            recipe.CaloriesExceeded += OnCaloriesExceeded;
             recipes.Add(recipe);
         }
 
@@ -55,6 +56,13 @@ namespace ST10303017_PROG6221_POE.Classes
                 Console.WriteLine("Recipe not found.");
                 Console.ResetColor();
             }
+        }
+
+        private void OnCaloriesExceeded(string recipeName, double totalCalories)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Warning: The total calories for the recipe '{recipeName}' exceed 300. Total Calories: {totalCalories}");
+            Console.ResetColor();
         }
 
         public void recipeMenu()

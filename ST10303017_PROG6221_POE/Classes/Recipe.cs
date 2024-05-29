@@ -5,6 +5,10 @@ namespace ST10303017_PROG6221_POE.Classes
 {
     public class Recipe
     {
+        // Delegate for notifying when total calories exceed 300
+        public delegate void CaloriesExceededHandler(string recipeName, double totalCalories);
+        public event CaloriesExceededHandler CaloriesExceeded;
+
         // Attributes for the Recipe class
         public string recipeName { get; private set; }
         public int numIngredients { get; set; }
@@ -207,6 +211,13 @@ namespace ST10303017_PROG6221_POE.Classes
             {
                 totalCalories += ingredient.calories;
             }
+
+            // Trigger the CaloriesExceeded event if the total calories exceed 300
+            if (totalCalories > 300)
+            {
+                CaloriesExceeded?.Invoke(recipeName, totalCalories);
+            }
+
             return totalCalories;
         }
 
