@@ -71,6 +71,8 @@ namespace ST10303017_PROG6221_POE.Classes
                 string ingredientName;
                 double ingredientQuantity;
                 string ingredientMeasurement;
+                double calories;
+                string foodGroup;
 
                 while (true)
                 {
@@ -115,8 +117,39 @@ namespace ST10303017_PROG6221_POE.Classes
                     Console.WriteLine("Invalid input, the unit of measurement cannot be empty. Please try again.");
                 }
 
+                while (true)
+                {
+                    try
+                    {
+                        Console.ResetColor();
+                        Console.Write("Enter the number of calories: ");
+                        string caloriesInput = Console.ReadLine();
+                        if (double.TryParse(caloriesInput, out calories) && calories >= 0)
+                            break;
+                        else
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        throw new ArgumentException("Invalid input, calories must be 0 or greater. Please try again");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+
+                while (true)
+                {
+                    Console.ResetColor();
+                    Console.Write("Enter the food group: ");
+                    foodGroup = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(foodGroup))
+                        break;
+                    else
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid input, the food group cannot be empty. Please try again.");
+                }
+
                 double originalQuantity = ingredientQuantity;
-                ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, ingredientMeasurement, originalQuantity));
+                ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, ingredientMeasurement, originalQuantity, calories, foodGroup));
             }
 
             while (true)
@@ -180,7 +213,11 @@ namespace ST10303017_PROG6221_POE.Classes
             {
                 if (ingredient != null)
                 {
-                    Console.WriteLine($"Ingredient Name: {ingredient.ingredientName}\nIngredient Quantity: {ingredient.ingredientQuantity}\nUnit of Measurement: {ingredient.ingredientMeasurement}\n");
+                    Console.WriteLine($"Ingredient Name: {ingredient.ingredientName}");
+                    Console.WriteLine($"Ingredient Quantity: {ingredient.ingredientQuantity}");
+                    Console.WriteLine($"Unit of Measurement: {ingredient.ingredientMeasurement}");
+                    Console.WriteLine($"Calories: {ingredient.calories}");
+                    Console.WriteLine($"Food Group: {ingredient.foodGroup}\n");
                 }
             }
             Console.WriteLine("Number of Steps: " + numOfSteps);
