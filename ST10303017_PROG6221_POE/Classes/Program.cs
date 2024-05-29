@@ -19,7 +19,7 @@ namespace ST10303017_PROG6221_POE
         // Main method to run the program
         static void Main(string[] args)
         {
-            Classes.Recipe recipeManager = new Classes.Recipe(); // Create a new recipe object
+            Classes.RecipeManager recipeManager = new Classes.RecipeManager(); // Create a new recipe object
             recipeManager.recipeMenu(); // Call the recipe menu method
         }
         //---------------------------------------------------------------------------------------------------//
