@@ -199,6 +199,17 @@ namespace ST10303017_PROG6221_POE.Classes
             }
         }
 
+        // Method to calculate total calories of the recipe
+        public double CalculateTotalCalories()
+        {
+            double totalCalories = 0;
+            foreach (var ingredient in ingredients)
+            {
+                totalCalories += ingredient.calories;
+            }
+            return totalCalories;
+        }
+
         // Method to display a recipe
         public void displayRecipe()
         {
@@ -220,6 +231,8 @@ namespace ST10303017_PROG6221_POE.Classes
                     Console.WriteLine($"Food Group: {ingredient.foodGroup}\n");
                 }
             }
+            double totalCalories = CalculateTotalCalories();
+            Console.WriteLine($"Total Calories: {totalCalories}");
             Console.WriteLine("Number of Steps: " + numOfSteps);
             for (int j = 0; j < numOfSteps; j++)
             {
