@@ -3,22 +3,34 @@ using System.Collections.Generic;
 
 namespace ST10303017_PROG6221_POE.Classes
 {
+    // Represents a recipe with its name, ingredients, steps, and methods to manage the recipe.
     public class Recipe
     {
         // Delegate for notifying when total calories exceed 300
         public delegate void CaloriesExceededHandler(string recipeName, double totalCalories);
+
+        // Event triggered when total calories exceed 300
         public event CaloriesExceededHandler CaloriesExceeded;
 
-        // Attributes for the Recipe class
-        public string recipeName { get; private set; }
-        public int numIngredients { get; set; }
+        // Name of the recipe
+        public string RecipeName { get; private set; }
 
-        private List<Ingredient> ingredients; // List of Ingredient objects
-        private double originalQuantity { get; set; }
-        private int numOfSteps { get; set; }
-        private List<string> stepDescriptions; // List for the step descriptions
+        // Number of ingredients in the recipe
+        public int NumIngredients { get; set; }
 
-        // Constructor for the Recipe class
+        // List of ingredients in the recipe
+        private List<Ingredient> ingredients;
+
+        // Original quantity of ingredients
+        private double originalQuantity;
+
+        // Number of steps in the recipe
+        private int numOfSteps;
+
+        // List of step descriptions
+        private List<string> stepDescriptions;
+
+        // Constructor to initialize the Recipe class
         public Recipe()
         {
             ingredients = new List<Ingredient>();
@@ -26,16 +38,17 @@ namespace ST10303017_PROG6221_POE.Classes
         }
 
         // Method to input a recipe
-        public void inputRecipe()
+        public void InputRecipe()
         {
+            // Loop to get the recipe name
             while (true)
             {
                 try
                 {
                     Console.ResetColor();
                     Console.Write("Enter the name of the recipe: ");
-                    recipeName = Console.ReadLine();
-                    if (!string.IsNullOrEmpty(recipeName))
+                    RecipeName = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(RecipeName))
                         break;
                     else
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -47,6 +60,7 @@ namespace ST10303017_PROG6221_POE.Classes
                 }
             }
 
+            // Loop to get the number of ingredients
             while (true)
             {
                 try
@@ -55,7 +69,7 @@ namespace ST10303017_PROG6221_POE.Classes
                     Console.Write("Enter the number of ingredients: ");
                     if (int.TryParse(Console.ReadLine(), out int checkNumIngredients) && checkNumIngredients > 0)
                     {
-                        numIngredients = checkNumIngredients;
+                        NumIngredients = checkNumIngredients;
                         break;
                     }
                     else
@@ -70,7 +84,8 @@ namespace ST10303017_PROG6221_POE.Classes
 
             Console.WriteLine("Ingredients: ");
 
-            for (int i = 0; i < numIngredients; i++)
+            // Loop to get the details of each ingredient
+            for (int i = 0; i < NumIngredients; i++)
             {
                 string ingredientName;
                 double ingredientQuantity;
@@ -78,6 +93,7 @@ namespace ST10303017_PROG6221_POE.Classes
                 double calories;
                 string foodGroup;
 
+                // Loop to get the ingredient name
                 while (true)
                 {
                     Console.ResetColor();
@@ -90,6 +106,7 @@ namespace ST10303017_PROG6221_POE.Classes
                     Console.WriteLine("Invalid input, ingredient name cannot be empty. Please try again.");
                 }
 
+                // Loop to get the ingredient quantity
                 while (true)
                 {
                     try
@@ -109,6 +126,7 @@ namespace ST10303017_PROG6221_POE.Classes
                     }
                 }
 
+                // Loop to get the ingredient unit of measurement
                 while (true)
                 {
                     Console.ResetColor();
@@ -121,6 +139,7 @@ namespace ST10303017_PROG6221_POE.Classes
                     Console.WriteLine("Invalid input, the unit of measurement cannot be empty. Please try again.");
                 }
 
+                // Loop to get the calories for the ingredient
                 while (true)
                 {
                     try
@@ -140,6 +159,7 @@ namespace ST10303017_PROG6221_POE.Classes
                     }
                 }
 
+                // Loop to get the food group for the ingredient
                 while (true)
                 {
                     Console.ResetColor();
@@ -152,10 +172,12 @@ namespace ST10303017_PROG6221_POE.Classes
                     Console.WriteLine("Invalid input, the food group cannot be empty. Please try again.");
                 }
 
+                // Add the ingredient to the list
                 double originalQuantity = ingredientQuantity;
                 ingredients.Add(new Ingredient(ingredientName, ingredientQuantity, ingredientMeasurement, originalQuantity, calories, foodGroup));
             }
 
+            // Loop to get the number of steps
             while (true)
             {
                 try
@@ -177,6 +199,7 @@ namespace ST10303017_PROG6221_POE.Classes
                 }
             }
 
+            // Loop to get the description of each step
             for (int j = 0; j < numOfSteps; j++)
             {
                 while (true)
@@ -209,37 +232,37 @@ namespace ST10303017_PROG6221_POE.Classes
             double totalCalories = 0;
             foreach (var ingredient in ingredients)
             {
-                totalCalories += ingredient.calories;
+                totalCalories += ingredient.Calories;
             }
 
             // Trigger the CaloriesExceeded event if the total calories exceed 300
             if (totalCalories > 300)
             {
-                CaloriesExceeded?.Invoke(recipeName, totalCalories);
+                CaloriesExceeded?.Invoke(RecipeName, totalCalories);
             }
 
             return totalCalories;
         }
 
         // Method to display a recipe
-        public void displayRecipe()
+        public void DisplayRecipe()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n-------------------------------------------");
-            Console.WriteLine("RECIPE NAME: " + recipeName);
+            Console.WriteLine("RECIPE NAME: " + RecipeName);
             Console.WriteLine("-------------------------------------------");
             Console.ResetColor();
-            Console.WriteLine("Number of Ingredients: " + numIngredients);
+            Console.WriteLine("Number of Ingredients: " + NumIngredients);
             Console.WriteLine("Ingredients: ");
             foreach (Ingredient ingredient in ingredients)
             {
                 if (ingredient != null)
                 {
-                    Console.WriteLine($"Ingredient Name: {ingredient.ingredientName}");
-                    Console.WriteLine($"Ingredient Quantity: {ingredient.ingredientQuantity}");
-                    Console.WriteLine($"Unit of Measurement: {ingredient.ingredientMeasurement}");
-                    Console.WriteLine($"Calories: {ingredient.calories}");
-                    Console.WriteLine($"Food Group: {ingredient.foodGroup}\n");
+                    Console.WriteLine($"Ingredient Name: {ingredient.IngredientName}");
+                    Console.WriteLine($"Ingredient Quantity: {ingredient.IngredientQuantity}");
+                    Console.WriteLine($"Unit of Measurement: {ingredient.IngredientMeasurement}");
+                    Console.WriteLine($"Calories: {ingredient.Calories}");
+                    Console.WriteLine($"Food Group: {ingredient.FoodGroup}\n");
                 }
             }
             double totalCalories = CalculateTotalCalories();
@@ -255,7 +278,7 @@ namespace ST10303017_PROG6221_POE.Classes
         }
 
         // Method to scale a recipe
-        public void scaleRecipe()
+        public void ScaleRecipe()
         {
             double scaleFactor = 0;
             bool validScaleFactor = false;
@@ -274,26 +297,28 @@ namespace ST10303017_PROG6221_POE.Classes
                 }
             }
 
+            // Scale the quantity of each ingredient
             foreach (var ingredient in ingredients)
             {
-                ingredient.ingredientQuantity *= scaleFactor;
+                ingredient.IngredientQuantity *= scaleFactor;
             }
         }
 
         // Method to reset the ingredient quantity
-        public void resetIngredientQuantity()
+        public void ResetIngredientQuantity()
         {
+            // Reset the quantity of each ingredient to its original quantity
             foreach (var ingredient in ingredients)
             {
-                ingredient.ingredientQuantity = ingredient.originalQuantity;
+                ingredient.IngredientQuantity = ingredient.OriginalQuantity;
             }
         }
 
         // Method to clear the recipe
-        public void clearRecipe()
+        public void ClearRecipe()
         {
-            recipeName = "";
-            numIngredients = 0;
+            RecipeName = "";
+            NumIngredients = 0;
             numOfSteps = 0;
             ingredients.Clear();
             stepDescriptions.Clear();
