@@ -1,11 +1,4 @@
-﻿/// <summary>
-/// Calwyn Govender
-/// ST10303017
-/// (Troelsen & Japikse, 2022)
-/// (Chand, 2018)
-/// (W3Schools, 2024)
-/// -----------------------------------------------------------------------------------------------------------
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ST10303017_PROG6221_POE.Classes

@@ -1,10 +1,4 @@
-﻿/// <summary>
-/// Calwyn Govender
-/// ST10303017
-/// (Troelsen & Japikse, 2022)
-/// -----------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 
 namespace ST10303017_PROG6221_POE.Classes
 {
@@ -26,4 +20,3 @@ namespace ST10303017_PROG6221_POE.Classes
         }
     }
 }
-
