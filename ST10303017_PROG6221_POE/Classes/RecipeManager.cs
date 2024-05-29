@@ -40,6 +40,23 @@ namespace ST10303017_PROG6221_POE.Classes
             return recipes.FirstOrDefault(r => r.recipeName.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
+        public void DisplayRecipeDetails()
+        {
+            Console.Write("Enter the name of the recipe to display: ");
+            string recipeName = Console.ReadLine();
+            Recipe selectedRecipe = SelectRecipe(recipeName);
+            if (selectedRecipe != null)
+            {
+                selectedRecipe.displayRecipe();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Recipe not found.");
+                Console.ResetColor();
+            }
+        }
+
         public void recipeMenu()
         {
             while (true)
@@ -72,19 +89,7 @@ namespace ST10303017_PROG6221_POE.Classes
                         DisplayRecipes();
                         break;
                     case "3":
-                        Console.Write("Enter the name of the recipe to display: ");
-                        string recipeName = Console.ReadLine();
-                        Recipe selectedRecipe = SelectRecipe(recipeName);
-                        if (selectedRecipe != null)
-                        {
-                            selectedRecipe.displayRecipe();
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Recipe not found.");
-                            Console.ResetColor();
-                        }
+                        DisplayRecipeDetails();
                         break;
                     case "4":
                         Console.ForegroundColor = ConsoleColor.Green;
