@@ -271,6 +271,18 @@ namespace ST10303017_PROG6221_POE.Classes
         }
         //---------------------------------------------------------------------------------------------------//
 
+        // Overload Method for testing purposes
+        //---------------------------------------------------------------------------------------------------//
+        public void inputRecipe(string name, List<Ingredient> ingredients, List<string> steps)
+        {
+            this.RecipeName = name;
+            this.ingredients = ingredients;
+            this.stepDescriptions = steps;
+            this.NumIngredients = ingredients.Count;
+            this.numOfSteps = steps.Count;
+        }
+        //---------------------------------------------------------------------------------------------------//
+
         // Method to calculate the total calories of the recipe
         // The method iterates through the list of ingredients and sums up the calories
         //---------------------------------------------------------------------------------------------------//
