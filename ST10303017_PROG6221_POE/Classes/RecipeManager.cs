@@ -4,27 +4,21 @@ using System.Linq;
 
 namespace ST10303017_PROG6221_POE.Classes
 {
-    // Manages a collection of recipes and provides methods to add, display, and select recipes.
     public class RecipeManager
     {
-        // List to store all recipes
         private List<Recipe> recipes;
 
-        // Constructor to initialize the RecipeManager class
         public RecipeManager()
         {
             recipes = new List<Recipe>();
         }
 
-        // Method to add a recipe to the collection
         public void AddRecipe(Recipe recipe)
         {
-            // Subscribe to the CaloriesExceeded event
             recipe.CaloriesExceeded += OnCaloriesExceeded;
             recipes.Add(recipe);
         }
 
-        // Method to display all recipes in alphabetical order
         public void DisplayRecipes()
         {
             if (recipes.Count == 0)
@@ -33,7 +27,6 @@ namespace ST10303017_PROG6221_POE.Classes
                 return;
             }
 
-            // Sort recipes by name in alphabetical order
             var sortedRecipes = recipes.OrderBy(r => r.RecipeName).ToList();
 
             Console.WriteLine("Recipes in alphabetical order:");
@@ -43,14 +36,11 @@ namespace ST10303017_PROG6221_POE.Classes
             }
         }
 
-        // Method to select a recipe by name
         public Recipe SelectRecipe(string name)
         {
-            // Find the recipe by name (case-insensitive)
             return recipes.FirstOrDefault(r => r.RecipeName.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        // Method to display the details of a selected recipe
         public void DisplayRecipeDetails()
         {
             Console.Write("Enter the name of the recipe to display: ");
@@ -68,7 +58,6 @@ namespace ST10303017_PROG6221_POE.Classes
             }
         }
 
-        // Event handler for when calories exceed 300
         private void OnCaloriesExceeded(string recipeName, double totalCalories)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -76,7 +65,6 @@ namespace ST10303017_PROG6221_POE.Classes
             Console.ResetColor();
         }
 
-        // Method to display the recipe manager menu
         public void RecipeMenu()
         {
             while (true)
