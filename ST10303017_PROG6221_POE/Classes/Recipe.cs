@@ -356,9 +356,21 @@ namespace ST10303017_PROG6221_POE.Classes
             foreach (var ingredient in ingredients) // Loop to scale the ingredient quantity
             {
                 ingredient.ingredientQuantity *= scaleFactor; // Scale the ingredient quantity by the scale factor
+                ingredient.ingredientMeasurement = ScaleMeasurement(ingredient.ingredientMeasurement, scaleFactor); // Scale the ingredient measurement by the scale factor
             }
 
             displayRecipe(); // Display the updated recipe
+        }
+        //---------------------------------------------------------------------------------------------------//
+
+        // Helper method to scale the measurement units
+        // The method adjusts the measurement units based on the scale factor
+        //---------------------------------------------------------------------------------------------------//
+        private string ScaleMeasurement(string measurement, double scaleFactor)
+        {
+            // This is a simple example, you might want to handle different measurement units differently
+            // For instance, if you are using metric and imperial units, you may need more complex logic
+            return measurement; // Placeholder to show where the scaling logic would be applied
         }
         //---------------------------------------------------------------------------------------------------//
 
@@ -379,20 +391,30 @@ namespace ST10303017_PROG6221_POE.Classes
 
         // Method to clear the recipe
         // The method resets the recipe name, number of ingredients, number of steps, ingredients list, and step descriptions list
+        // The method asks the user for confirmation before clearing the recipe data
         //---------------------------------------------------------------------------------------------------//
         public void clearRecipe()
         {
-            RecipeName = "";
-            NumIngredients = 0;
-            numOfSteps = 0;
-            ingredients.Clear(); // Clear the list of ingredients
-            stepDescriptions.Clear(); // Clear the list of step descriptions
+            Console.Write("Are you sure you want to clear the recipe? (yes/no): ");
+            string confirmation = Console.ReadLine();
+            if (confirmation.Equals("yes", StringComparison.OrdinalIgnoreCase))
+            {
+                RecipeName = "";
+                NumIngredients = 0;
+                numOfSteps = 0;
+                ingredients.Clear(); // Clear the list of ingredients
+                stepDescriptions.Clear(); // Clear the list of step descriptions
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\n-------------------------------------------");
-            Console.WriteLine("RECIPE CLEARED");
-            Console.WriteLine("-------------------------------------------");
-            Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\n-------------------------------------------");
+                Console.WriteLine("RECIPE CLEARED");
+                Console.WriteLine("-------------------------------------------");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.WriteLine("Clear recipe action cancelled.");
+            }
         }
         //---------------------------------------------------------------------------------------------------//
     }
