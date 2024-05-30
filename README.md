@@ -1,7 +1,3 @@
-Sure, here is the updated README with the complete list of updates, including all the features we implemented without the input validation item.
-
----
-
 # Recipe Manager Application
 
 This README provides instructions on how to compile and run the Recipe Manager application, which is a simple console application written in C# using .NET Framework 4.8.
@@ -82,7 +78,3 @@ Based on the feedback from the lecturer, the following additional updates were m
 - Troelsen, A., & Japikse, P. (2022). Pro C# 10 with .NET 6: Foundational Principles and Practices in Programming. New York: Apress Media LLC.
 - W3Schools. (2024). C# Exceptions - Try..Catch. Retrieved from [W3Schools](https://www.w3schools.com/cs/cs_exceptions.php)
 - Chand, M. (2018, October 4). Change Console Foreground And Background Color In C#. Retrieved from [C# Corner](https://www.c-sharpcorner.com/article/change-console-foreground-and-background-color-in-c-sharp/)
-
----
-
-This README now includes all the updates made to the application, addressing both initial improvements and specific lecturer feedback.
