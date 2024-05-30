@@ -6,32 +6,32 @@ namespace ST10303017_PROG6221_POE.Classes
     public class Ingredient
     {
         // Name of the ingredient
-        public string IngredientName { get; set; }
+        public string ingredientName { get; set; }
 
         // Quantity of the ingredient
-        public double IngredientQuantity { get; set; }
+        public double ingredientQuantity { get; set; }
 
         // Unit of measurement for the ingredient
-        public string IngredientMeasurement { get; set; }
+        public string ingredientMeasurement { get; set; }
 
         // Original quantity of the ingredient before scaling
-        public double OriginalQuantity { get; set; }
+        public double originalQuantity { get; set; }
 
         // Calories of the ingredient
-        public double Calories { get; set; }
+        public double ingredientCalories { get; set; }
 
         // Food group of the ingredient
-        public string FoodGroup { get; set; }
+        public string ingredientFoodGroup { get; set; }
 
         // Constructor to initialize an ingredient with specified details
         public Ingredient(string ingredientName, double ingredientQuantity, string ingredientMeasurement, double originalQuantity, double calories, string foodGroup)
         {
-            IngredientName = ingredientName;
-            IngredientQuantity = ingredientQuantity;
-            IngredientMeasurement = ingredientMeasurement;
-            OriginalQuantity = originalQuantity;
-            Calories = calories;
-            FoodGroup = foodGroup;
+            this.ingredientName = ingredientName;
+            this.ingredientQuantity = ingredientQuantity;
+            this.ingredientMeasurement = ingredientMeasurement;
+            this.originalQuantity = originalQuantity;
+            ingredientCalories = calories;
+            ingredientFoodGroup = foodGroup;
         }
     }
 }
