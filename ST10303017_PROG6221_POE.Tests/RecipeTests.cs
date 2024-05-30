@@ -2,7 +2,7 @@
 using ST10303017_PROG6221_POE.Classes;
 using System.Collections.Generic;
 
-namespace ST10303017_PROG6221_POE.Tests
+namespace RecipeManager.Tests
 {
     [TestClass]
     public class RecipeTests
