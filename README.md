@@ -1,6 +1,6 @@
 # Recipe Manager Application
 
-This README provides instructions on how to compile and run the Recipe Manager application, which is a simple console application written in C# using .NET Framework 4.8.
+This README provides instructions on how to compile, run, and test the Recipe Manager application, which is a simple console application written in C# using .NET Framework 4.8.
 
 ## Prerequisites
 
@@ -55,8 +55,6 @@ Follow the on-screen prompts to interact with the Recipe Manager. The applicatio
 
 ## Updates
 
-### Initial Updates
-
 The following updates were implemented to enhance the functionality of the Recipe Manager application:
 
 1. **Use of Generic Collections:** Replaced arrays with generic collections for managing recipes, ingredients, and steps.
@@ -65,13 +63,14 @@ The following updates were implemented to enhance the functionality of the Recip
 4. **Calories and Food Group:** For each ingredient, users can now enter the number of calories and the food group it belongs to.
 5. **Total Calories Calculation:** The software calculates and displays the total calories of all ingredients in a recipe.
 6. **Calories Notification:** The software notifies users when the total calories of a recipe exceed 300.
+7. **Unit Testing:** The test method for the calories has been added.
 
-### Lecturer Feedback
+### Lecturer Feedback Part 2
 
-Based on the feedback from the lecturer, the following additional updates were made:
+The second part of the project involved implementing feedback received from the lecturer, which aimed at enhancing the usability and functionality of the Recipe Manager application further. The first significant update was the **Unit of Measurement Scaling**. Previously, the application allowed users to scale recipe ingredients, but the units of measurement remained unchanged, which could lead to confusion and inaccuracies. This feature was enhanced to ensure that when users scale the ingredients, the units of measurement are also appropriately adjusted. This ensures that the integrity and accuracy of the recipe are maintained, providing a more realistic and practical scaling function. For example, if a recipe originally called for 1 cup of flour, scaling by a factor of 0.5 would appropriately adjust the measurement to 0.5 cups, ensuring users have precise and clear instructions regardless of the scale applied.
 
-1. **Unit of Measurement Scaling:** Ensured that the units of measurement are changed correctly when scaling recipe ingredients.
-2. **Confirmation Before Clearing Data:** Added a confirmation prompt to ensure the user wants to clear all recipe data before performing the clear action.
+The second major enhancement was adding a **Confirmation Before Clearing Data** feature. Initially, the application allowed users to clear all recipe data with a single command, which posed a risk of accidental data loss. To address this, a confirmation prompt was added to the clear recipe function. Now, when users attempt to clear all recipe data, they are prompted to confirm their action. This additional step helps prevent accidental deletions by ensuring that the user intentionally wants to clear the data. This feature significantly improves the user experience by adding a layer of security and reducing the chances of inadvertent data loss, which can be particularly useful in scenarios where multiple recipes have been inputted and need careful management.
+
 
 ## References
 
