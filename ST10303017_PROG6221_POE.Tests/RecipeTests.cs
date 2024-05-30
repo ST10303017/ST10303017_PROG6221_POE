@@ -1,4 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/// <summary>
+/// Calwyn Govender
+/// ST10303017
+/// (Troelsen & Japikse, 2022)
+/// (Chand, 2018)
+/// (W3Schools, 2024)
+/// -----------------------------------------------------------------------------------------------------------
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ST10303017_PROG6221_POE.Classes;
 using System.Collections.Generic;
 
