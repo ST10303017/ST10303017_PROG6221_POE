@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ST10303017_PROG6221_POE", "ST10303017_PROG6221_POE\ST10303017_PROG6221_POE.csproj", "{40E8FD55-E030-42CD-8A5A-F97C4E67BB57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeManager.Tests", "RecipeManager.Tests\RecipeManager.Tests.csproj", "{6F179E65-1573-47D5-A2AB-449A2864AF66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ST10303017_PROG6221_POE.Tests", "RecipeManager.Tests\ST10303017_PROG6221_POE.Tests.csproj", "{6F179E65-1573-47D5-A2AB-449A2864AF66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
