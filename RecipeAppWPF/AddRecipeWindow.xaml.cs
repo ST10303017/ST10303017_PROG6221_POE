@@ -1,12 +1,32 @@
-﻿using System.Collections.Generic;
+﻿/// <summary>
+/// Calwyn Govender
+/// ST10303017
+/// (Troelsen & Japikse, 2022)
+/// (Chand, 2018)
+/// (W3Schools, 2024)
+/// -----------------------------------------------------------------------------------------------------------
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using ST10303017_PROG6221_POE.Classes;
 
 namespace RecipeAppWPF
 {
+    // The AddRecipeWindow class
+    // This class represents the window for adding a new recipe in the Recipe Manager WPF application.
+    // It provides methods to handle user inputs for recipe details, ingredients, and steps.
+    //-----------------------------------------------------------------------------------------------------------//
     public partial class AddRecipeWindow : Window
     {
+        // Properties and fields for the AddRecipeWindow class
+        // NewRecipe: The recipe being created
+        // ingredients: The list of ingredients for the new recipe
+        // steps: The list of step descriptions for the new recipe
+        // numIngredients: The total number of ingredients expected
+        // numSteps: The total number of steps expected
+        // ingredientCount: The current count of added ingredients
+        // stepCount: The current count of added steps
+        //---------------------------------------------------------------------------------------------------//
         public Recipe NewRecipe { get; private set; }
         private List<Ingredient> ingredients = new List<Ingredient>();
         private List<string> steps = new List<string>();
@@ -14,12 +34,22 @@ namespace RecipeAppWPF
         private int numSteps;
         private int ingredientCount = 0;
         private int stepCount = 0;
+        //---------------------------------------------------------------------------------------------------//
 
+        // The AddRecipeWindow constructor
+        // Initializes a new instance of the AddRecipeWindow class.
+        //---------------------------------------------------------------------------------------------------//
         public AddRecipeWindow()
         {
             InitializeComponent();
         }
+        //---------------------------------------------------------------------------------------------------//
 
+        // The method to handle the AddIngredientButton click event
+        // Validates and adds the ingredient details to the ingredients list
+        // Clears the ingredient input fields after adding
+        // Displays a message indicating the ingredient has been added
+        //---------------------------------------------------------------------------------------------------//
         private void AddIngredientButton_Click(object sender, RoutedEventArgs e)
         {
             if (ValidateIngredientInput())
@@ -43,7 +73,13 @@ namespace RecipeAppWPF
                 }
             }
         }
+        //---------------------------------------------------------------------------------------------------//
 
+        // The method to handle the AddStepButton click event
+        // Validates and adds the step description to the steps list
+        // Clears the step description input field after adding
+        // Displays a message indicating the step has been added
+        //---------------------------------------------------------------------------------------------------//
         private void AddStepButton_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(StepDescriptionTextBox.Text))
@@ -63,7 +99,12 @@ namespace RecipeAppWPF
                 MessageBox.Show("Step description cannot be empty.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        //---------------------------------------------------------------------------------------------------//
 
+        // The method to handle the AddRecipeButton click event
+        // Validates the recipe details and creates a new Recipe object
+        // Sets the DialogResult to true to indicate the recipe has been successfully created
+        //---------------------------------------------------------------------------------------------------//
         private void AddRecipeButton_Click(object sender, RoutedEventArgs e)
         {
             if (ValidateRecipeInput())
@@ -78,7 +119,12 @@ namespace RecipeAppWPF
                 DialogResult = true;
             }
         }
+        //---------------------------------------------------------------------------------------------------//
 
+        // The method to validate ingredient input fields
+        // Ensures that all ingredient input fields are filled with valid values
+        // Displays an error message if any validation fails
+        //---------------------------------------------------------------------------------------------------//
         private bool ValidateIngredientInput()
         {
             if (string.IsNullOrWhiteSpace(IngredientNameTextBox.Text) ||
@@ -94,7 +140,12 @@ namespace RecipeAppWPF
             }
             return true;
         }
+        //---------------------------------------------------------------------------------------------------//
 
+        // The method to validate recipe input fields
+        // Ensures that all recipe input fields are filled with valid values
+        // Displays an error message if any validation fails
+        //---------------------------------------------------------------------------------------------------//
         private bool ValidateRecipeInput()
         {
             if (string.IsNullOrWhiteSpace(RecipeNameTextBox.Text))
@@ -129,7 +180,11 @@ namespace RecipeAppWPF
 
             return true;
         }
+        //---------------------------------------------------------------------------------------------------//
 
+        // The method to clear ingredient input fields
+        // Clears the input fields for ingredient details
+        //---------------------------------------------------------------------------------------------------//
         private void ClearIngredientFields()
         {
             IngredientNameTextBox.Clear();
@@ -138,5 +193,8 @@ namespace RecipeAppWPF
             CaloriesTextBox.Clear();
             FoodGroupComboBox.SelectedIndex = -1;
         }
+        //---------------------------------------------------------------------------------------------------//
     }
+    //---------------------------------------------------------------------------------------------------//
 }
+//---------------------------------------------------------------------------------------------------//
