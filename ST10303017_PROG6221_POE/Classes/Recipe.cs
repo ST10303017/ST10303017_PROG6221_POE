@@ -8,15 +8,15 @@ namespace ST10303017_PROG6221_POE.Classes
         public delegate void CaloriesExceededHandler(string recipeName, double totalCalories);
         public event CaloriesExceededHandler CaloriesExceeded;
 
-        public string RecipeName { get; private set; }
+        public string RecipeName { get; set; } // Changed from private set to public set
         public int NumIngredients { get; set; }
         public List<Ingredient> Ingredients { get; private set; }
-        private List<string> stepDescriptions;
+        public List<string> StepDescriptions { get; private set; } // Changed from private to public
 
         public Recipe()
         {
             Ingredients = new List<Ingredient>();
-            stepDescriptions = new List<string>();
+            StepDescriptions = new List<string>();
         }
 
         public void inputRecipe()
@@ -54,7 +54,7 @@ namespace ST10303017_PROG6221_POE.Classes
             {
                 Console.Write($"Enter the description of step {j + 1}: ");
                 string stepDescription = Console.ReadLine();
-                stepDescriptions.Add(stepDescription);
+                StepDescriptions.Add(stepDescription); // Use the public StepDescriptions property
             }
         }
 
@@ -84,9 +84,9 @@ namespace ST10303017_PROG6221_POE.Classes
             }
             Console.WriteLine($"Total Calories: {CalculateTotalCalories()}");
             Console.WriteLine("Steps:");
-            for (int i = 0; i < stepDescriptions.Count; i++)
+            for (int i = 0; i < StepDescriptions.Count; i++)
             {
-                Console.WriteLine($"Step {i + 1}: {stepDescriptions[i]}");
+                Console.WriteLine($"Step {i + 1}: {StepDescriptions[i]}");
             }
         }
 
@@ -114,7 +114,7 @@ namespace ST10303017_PROG6221_POE.Classes
             RecipeName = string.Empty;
             NumIngredients = 0;
             Ingredients.Clear();
-            stepDescriptions.Clear();
+            StepDescriptions.Clear(); // Use the public StepDescriptions property
         }
     }
 }

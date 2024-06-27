@@ -16,11 +16,10 @@ namespace RecipeAppWPF
 
         private void AddRecipeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ValidateRecipeInput())
+            AddRecipeWindow addRecipeWindow = new AddRecipeWindow();
+            if (addRecipeWindow.ShowDialog() == true)
             {
-                var recipe = new Recipe();
-                recipe.inputRecipe();
-                recipeManager.addRecipe(recipe);
+                recipeManager.addRecipe(addRecipeWindow.NewRecipe);
                 DisplayRecipes();
             }
         }
