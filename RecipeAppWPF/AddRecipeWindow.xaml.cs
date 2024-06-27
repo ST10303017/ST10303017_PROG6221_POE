@@ -9,6 +9,10 @@ namespace RecipeAppWPF
         public Recipe NewRecipe { get; private set; }
         private List<Ingredient> ingredients = new List<Ingredient>();
         private List<string> steps = new List<string>();
+        private int numIngredients;
+        private int numSteps;
+        private int ingredientCount = 0;
+        private int stepCount = 0;
 
         public AddRecipeWindow()
         {
@@ -17,7 +21,7 @@ namespace RecipeAppWPF
 
         private void AddIngredientButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ValidateIngredientInput())
+            if (ingredientCount < numIngredients && ValidateIngredientInput())
             {
                 ingredients.Add(new Ingredient(
                     IngredientNameTextBox.Text,
@@ -28,16 +32,28 @@ namespace RecipeAppWPF
                     FoodGroupTextBox.Text
                 ));
 
+                ingredientCount++;
                 ClearIngredientFields();
+
+                if (ingredientCount == numIngredients)
+                {
+                    MessageBox.Show("All ingredients added.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 
         private void AddStepButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(StepDescriptionTextBox.Text))
+            if (stepCount < numSteps && !string.IsNullOrWhiteSpace(StepDescriptionTextBox.Text))
             {
                 steps.Add(StepDescriptionTextBox.Text);
+                stepCount++;
                 StepDescriptionTextBox.Clear();
+
+                if (stepCount == numSteps)
+                {
+                    MessageBox.Show("All steps added.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
             else
             {
@@ -55,7 +71,7 @@ namespace RecipeAppWPF
                 };
 
                 NewRecipe.Ingredients.AddRange(ingredients);
-                NewRecipe.StepDescriptions.AddRange(steps); // Use the public StepDescriptions property
+                NewRecipe.StepDescriptions.AddRange(steps);
 
                 DialogResult = true;
             }
@@ -85,15 +101,27 @@ namespace RecipeAppWPF
                 return false;
             }
 
-            if (ingredients.Count == 0)
+            if (!int.TryParse(NumIngredientsTextBox.Text, out numIngredients) || numIngredients <= 0)
             {
-                MessageBox.Show("Please add at least one ingredient.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please enter a valid number of ingredients.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            if (steps.Count == 0)
+            if (ingredients.Count != numIngredients)
             {
-                MessageBox.Show("Please add at least one step.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Please add {numIngredients} ingredients.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!int.TryParse(NumStepsTextBox.Text, out numSteps) || numSteps <= 0)
+            {
+                MessageBox.Show("Please enter a valid number of steps.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (steps.Count != numSteps)
+            {
+                MessageBox.Show($"Please add {numSteps} steps.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 

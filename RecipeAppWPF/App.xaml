@@ -4,8 +4,10 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!-- Define Colors -->
-        <Color x:Key="PrimaryColor">#3498db</Color>
-        <Color x:Key="SecondaryColor">#2ecc71</Color>
+        <Color x:Key="PrimaryColor">#2c3e50</Color>
+        <!-- Darker color for better visibility -->
+        <Color x:Key="SecondaryColor">#27ae60</Color>
+        <!-- Dark green -->
         <Color x:Key="AccentColor">#e74c3c</Color>
         <Color x:Key="TextColor">#333333</Color>
         <Color x:Key="BackgroundColor">#f0f0f0</Color>
@@ -71,6 +73,8 @@
             <Setter Property="Margin" Value="5"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="120"/>
+            <!-- Increase button width -->
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">

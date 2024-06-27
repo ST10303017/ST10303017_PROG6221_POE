@@ -10,9 +10,6 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
-            <TextBox x:Name="RecipeNameTextBox" Width="200" Style="{StaticResource PlaceholderTextBox}" Tag="Enter Recipe Name"/>
-            <TextBox x:Name="NumIngredientsTextBox" Width="100" Margin="5,0,0,0" Style="{StaticResource PlaceholderTextBox}" Tag="Ingredients"/>
-            <TextBox x:Name="NumStepsTextBox" Width="100" Margin="5,0,0,0" Style="{StaticResource PlaceholderTextBox}" Tag="Steps"/>
             <Button Content="Add Recipe" Click="AddRecipeButton_Click" Margin="5,0,0,0" Style="{StaticResource RoundedButton}"/>
             <Button Content="Display Recipes" Click="DisplayRecipesButton_Click" Margin="5,0,0,0" Style="{StaticResource RoundedButton}"/>
         </StackPanel>
