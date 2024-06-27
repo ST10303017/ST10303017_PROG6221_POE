@@ -4,21 +4,21 @@
         Title="Add Recipe" Height="450" Width="400">
     <Grid>
         <StackPanel Margin="10">
-            <TextBox x:Name="RecipeNameTextBox" Width="350" Margin="5" Text="Enter Recipe Name"/>
+            <TextBox x:Name="RecipeNameTextBox" Width="350" Margin="5" Style="{StaticResource PlaceholderTextBox}" Tag="Enter Recipe Name"/>
             <TextBlock Text="Ingredients:" Margin="5"/>
             <StackPanel x:Name="IngredientsPanel" Margin="5">
                 <StackPanel Orientation="Horizontal" Margin="5">
-                    <TextBox x:Name="IngredientNameTextBox" Width="100" Margin="5" Text="Name"/>
-                    <TextBox x:Name="QuantityTextBox" Width="50" Margin="5" Text="Qty"/>
-                    <TextBox x:Name="UnitTextBox" Width="50" Margin="5" Text="Unit"/>
-                    <TextBox x:Name="CaloriesTextBox" Width="50" Margin="5" Text="Cal"/>
-                    <TextBox x:Name="FoodGroupTextBox" Width="80" Margin="5" Text="Group"/>
+                    <TextBox x:Name="IngredientNameTextBox" Width="100" Margin="5" Style="{StaticResource PlaceholderTextBox}" Tag="Name"/>
+                    <TextBox x:Name="QuantityTextBox" Width="50" Margin="5" Style="{StaticResource PlaceholderTextBox}" Tag="Qty"/>
+                    <TextBox x:Name="UnitTextBox" Width="50" Margin="5" Style="{StaticResource PlaceholderTextBox}" Tag="Unit"/>
+                    <TextBox x:Name="CaloriesTextBox" Width="50" Margin="5" Style="{StaticResource PlaceholderTextBox}" Tag="Cal"/>
+                    <TextBox x:Name="FoodGroupTextBox" Width="80" Margin="5" Style="{StaticResource PlaceholderTextBox}" Tag="Group"/>
                     <Button Content="Add" Width="50" Margin="5" Click="AddIngredientButton_Click"/>
                 </StackPanel>
             </StackPanel>
             <TextBlock Text="Steps:" Margin="5"/>
             <StackPanel x:Name="StepsPanel" Margin="5">
-                <TextBox x:Name="StepDescriptionTextBox" Width="350" Margin="5" Text="Step Description"/>
+                <TextBox x:Name="StepDescriptionTextBox" Width="350" Margin="5" Style="{StaticResource PlaceholderTextBox}" Tag="Step Description"/>
                 <Button Content="Add Step" Width="100" Margin="5" Click="AddStepButton_Click"/>
             </StackPanel>
             <Button Content="Add Recipe" Width="100" Margin="5" Click="AddRecipeButton_Click"/>
