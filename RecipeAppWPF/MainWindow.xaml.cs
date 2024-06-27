@@ -16,10 +16,13 @@ namespace RecipeAppWPF
 
         private void AddRecipeButton_Click(object sender, RoutedEventArgs e)
         {
-            var recipe = new Recipe();
-            recipe.inputRecipe();
-            recipeManager.addRecipe(recipe);
-            DisplayRecipes();
+            if (ValidateRecipeInput())
+            {
+                var recipe = new Recipe();
+                recipe.inputRecipe();
+                recipeManager.addRecipe(recipe);
+                DisplayRecipes();
+            }
         }
 
         private void DisplayRecipesButton_Click(object sender, RoutedEventArgs e)
@@ -39,6 +42,29 @@ namespace RecipeAppWPF
         private void DisplayRecipes()
         {
             RecipesListView.ItemsSource = recipeManager.GetRecipes();
+        }
+
+        private bool ValidateRecipeInput()
+        {
+            if (string.IsNullOrWhiteSpace(RecipeNameTextBox.Text))
+            {
+                MessageBox.Show("Recipe name cannot be empty.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(NumIngredientsTextBox.Text) || !int.TryParse(NumIngredientsTextBox.Text, out int numIngredients) || numIngredients <= 0)
+            {
+                MessageBox.Show("Please enter a valid number of ingredients.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(NumStepsTextBox.Text) || !int.TryParse(NumStepsTextBox.Text, out int numSteps) || numSteps <= 0)
+            {
+                MessageBox.Show("Please enter a valid number of steps.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
         }
     }
 }
