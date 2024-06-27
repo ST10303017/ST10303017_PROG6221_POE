@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using ST10303017_PROG6221_POE.Classes;
 
 namespace RecipeAppWPF
@@ -21,7 +22,7 @@ namespace RecipeAppWPF
 
         private void AddIngredientButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ingredientCount < numIngredients && ValidateIngredientInput())
+            if (ValidateIngredientInput())
             {
                 ingredients.Add(new Ingredient(
                     IngredientNameTextBox.Text,
@@ -29,11 +30,12 @@ namespace RecipeAppWPF
                     UnitTextBox.Text,
                     double.Parse(QuantityTextBox.Text),
                     double.Parse(CaloriesTextBox.Text),
-                    FoodGroupTextBox.Text
+                    (FoodGroupComboBox.SelectedItem as ComboBoxItem)?.Content.ToString()
                 ));
 
                 ingredientCount++;
                 ClearIngredientFields();
+                MessageBox.Show("Ingredient added.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 if (ingredientCount == numIngredients)
                 {
@@ -44,11 +46,12 @@ namespace RecipeAppWPF
 
         private void AddStepButton_Click(object sender, RoutedEventArgs e)
         {
-            if (stepCount < numSteps && !string.IsNullOrWhiteSpace(StepDescriptionTextBox.Text))
+            if (!string.IsNullOrWhiteSpace(StepDescriptionTextBox.Text))
             {
                 steps.Add(StepDescriptionTextBox.Text);
                 stepCount++;
                 StepDescriptionTextBox.Clear();
+                MessageBox.Show("Step added.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 if (stepCount == numSteps)
                 {
@@ -67,11 +70,10 @@ namespace RecipeAppWPF
             {
                 NewRecipe = new Recipe
                 {
-                    RecipeName = RecipeNameTextBox.Text
+                    RecipeName = RecipeNameTextBox.Text,
+                    Ingredients = new List<Ingredient>(ingredients),
+                    StepDescriptions = new List<string>(steps)
                 };
-
-                NewRecipe.Ingredients.AddRange(ingredients);
-                NewRecipe.StepDescriptions.AddRange(steps);
 
                 DialogResult = true;
             }
@@ -85,7 +87,7 @@ namespace RecipeAppWPF
                 string.IsNullOrWhiteSpace(UnitTextBox.Text) ||
                 string.IsNullOrWhiteSpace(CaloriesTextBox.Text) ||
                 !double.TryParse(CaloriesTextBox.Text, out double _) ||
-                string.IsNullOrWhiteSpace(FoodGroupTextBox.Text))
+                FoodGroupComboBox.SelectedItem == null)
             {
                 MessageBox.Show("Please enter valid ingredient details.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -134,7 +136,7 @@ namespace RecipeAppWPF
             QuantityTextBox.Clear();
             UnitTextBox.Clear();
             CaloriesTextBox.Clear();
-            FoodGroupTextBox.Clear();
+            FoodGroupComboBox.SelectedIndex = -1;
         }
     }
 }

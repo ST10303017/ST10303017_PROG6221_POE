@@ -6,6 +6,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -29,7 +30,13 @@
             <Button Content="Apply Filter" Click="ApplyFilterButton_Click" Margin="5,0,0,0" Style="{StaticResource RoundedButton}"/>
         </StackPanel>
 
-        <ListView x:Name="RecipesListView" Grid.Row="2" Margin="10">
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="10">
+            <Button Content="Clear Recipe" Click="ClearRecipeButton_Click" Margin="5,0,0,0" Style="{StaticResource RoundedButton}"/>
+            <Button Content="Reset Quantities" Click="ResetQuantitiesButton_Click" Margin="5,0,0,0" Style="{StaticResource RoundedButton}"/>
+            <Button Content="Scale Quantities" Click="ScaleQuantitiesButton_Click" Margin="5,0,0,0" Style="{StaticResource RoundedButton}"/>
+        </StackPanel>
+
+        <ListView x:Name="RecipesListView" Grid.Row="3" Margin="10">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Recipe Name" DisplayMemberBinding="{Binding RecipeName}"/>

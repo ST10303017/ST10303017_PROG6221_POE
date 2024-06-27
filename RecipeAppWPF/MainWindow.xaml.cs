@@ -38,32 +38,87 @@ namespace RecipeAppWPF
             RecipesListView.ItemsSource = recipeManager.FilterRecipes(ingredient, foodGroup, maxCalories);
         }
 
-        private void DisplayRecipes()
+        private void ClearRecipeButton_Click(object sender, RoutedEventArgs e)
         {
-            RecipesListView.ItemsSource = recipeManager.GetRecipes();
+            string recipeName = GetSelectedRecipeName();
+            if (!string.IsNullOrEmpty(recipeName))
+            {
+                recipeManager.ClearRecipe(recipeName);
+                DisplayRecipes();
+            }
         }
 
-        private bool ValidateRecipeInput()
+        private void ResetQuantitiesButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(RecipeNameTextBox.Text))
+            string recipeName = GetSelectedRecipeName();
+            if (!string.IsNullOrEmpty(recipeName))
             {
-                MessageBox.Show("Recipe name cannot be empty.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
+                recipeManager.ResetQuantities(recipeName);
+                DisplayRecipes();
+            }
+        }
+
+        private void ScaleQuantitiesButton_Click(object sender, RoutedEventArgs e)
+        {
+            string recipeName = GetSelectedRecipeName();
+            if (!string.IsNullOrEmpty(recipeName))
+            {
+                double scaleFactor = GetScaleFactor();
+                recipeManager.ScaleQuantities(recipeName, scaleFactor);
+                DisplayRecipes();
+            }
+        }
+
+        private void DisplayRecipes()
+        {
+            var recipes = recipeManager.GetRecipes();
+            if (recipes.Count == 0)
+            {
+                MessageBox.Show("No recipes available.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                RecipesListView.ItemsSource = null;
+                return;
             }
 
-            if (string.IsNullOrWhiteSpace(NumIngredientsTextBox.Text) || !int.TryParse(NumIngredientsTextBox.Text, out int numIngredients) || numIngredients <= 0)
-            {
-                MessageBox.Show("Please enter a valid number of ingredients.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
+            RecipesListView.ItemsSource = recipes;
 
-            if (string.IsNullOrWhiteSpace(NumStepsTextBox.Text) || !int.TryParse(NumStepsTextBox.Text, out int numSteps) || numSteps <= 0)
+            foreach (var recipe in recipes)
             {
-                MessageBox.Show("Please enter a valid number of steps.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
+                string recipeDetails = $"Recipe Name: {recipe.RecipeName}\nTotal Calories: {recipe.CalculateTotalCalories()}\n\nIngredients:\n";
+                foreach (var ingredient in recipe.Ingredients)
+                {
+                    recipeDetails += $"- {ingredient.ingredientName}, {ingredient.ingredientQuantity} {ingredient.ingredientMeasurement}, {ingredient.ingredientCalories} calories, {ingredient.ingredientFoodGroup}\n";
+                }
 
-            return true;
+                recipeDetails += "\nSteps:\n";
+                for (int i = 0; i < recipe.StepDescriptions.Count; i++)
+                {
+                    recipeDetails += $"{i + 1}. {recipe.StepDescriptions[i]}\n";
+                }
+
+                MessageBox.Show(recipeDetails, "Recipe Details", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private string GetSelectedRecipeName()
+        {
+            if (RecipesListView.SelectedItem is Recipe selectedRecipe)
+            {
+                return selectedRecipe.RecipeName;
+            }
+            MessageBox.Show("Please select a recipe from the list.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            return null;
+        }
+
+        private double GetScaleFactor()
+        {
+            // Prompt user for scale factor
+            string input = Microsoft.VisualBasic.Interaction.InputBox("Enter scale factor (0.5, 2, or 3):", "Scale Recipe", "1");
+            if (double.TryParse(input, out double scaleFactor) && (scaleFactor == 0.5 || scaleFactor == 2 || scaleFactor == 3))
+            {
+                return scaleFactor;
+            }
+            MessageBox.Show("Invalid scale factor. Please enter 0.5, 2, or 3.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            return 1;
         }
     }
 }
