@@ -1,6 +1,6 @@
 # Recipe Manager Application
 
-This README provides instructions on how to compile, run, and test the Recipe Manager application, which is a simple console application written in C# using .NET Framework 4.8.
+This README provides instructions on how to compile, run, and test the Recipe Manager application, which is a simple console application written in C# using .NET Framework 4.8. The application has been updated with a graphical user interface (GUI) using Windows Presentation Foundation (WPF).
 
 ## Prerequisites
 
@@ -51,26 +51,24 @@ Follow the on-screen prompts to interact with the Recipe Manager. The applicatio
 - Scale a recipe
 - Reset ingredient quantities
 - Clear all recipe data
+- Filter recipes by ingredient, food group, or maximum number of calories
 - Exit the application
 
 ## Updates
 
 The following updates were implemented to enhance the functionality of the Recipe Manager application:
 
-1. **Use of Generic Collections:** Replaced arrays with generic collections for managing recipes, ingredients, and steps.
-2. **Delegates:** Implemented delegates to notify users when the total calories of a recipe exceed 300.
-3. **Alphabetical Order:** Recipes are displayed in alphabetical order by name.
-4. **Calories and Food Group:** For each ingredient, users can now enter the number of calories and the food group it belongs to.
-5. **Total Calories Calculation:** The software calculates and displays the total calories of all ingredients in a recipe.
-6. **Calories Notification:** The software notifies users when the total calories of a recipe exceed 300.
-7. **Unit Testing:** The test method for the calories has been added.
+1. **Graphical User Interface (GUI):** Converted the console application to a WPF application for a more user-friendly interface.
+2. **Food Group Selection:** Users can now select the food group from a predefined list of options in a dropdown menu.
+3. **Calorie Explanation:** The application provides explanations of what calories are and the significance of different calorie ranges.
+4. **Calorie Alerts:** The application displays detailed calorie alerts based on specific ranges when a recipe is added.
+5. **Filtering Recipes:** Users can filter recipes by entering the name of an ingredient, choosing a food group, or selecting a maximum number of calories.
 
-### Lecturer Feedback Part 2
+### Lecturer Feedback Implementation
 
-The second part of the project involved implementing feedback received from the lecturer, which aimed at enhancing the usability and functionality of the Recipe Manager application further. The first significant update was the **Unit of Measurement Scaling**. Previously, the application allowed users to scale recipe ingredients, but the units of measurement remained unchanged, which could lead to confusion and inaccuracies. This feature was enhanced to ensure that when users scale the ingredients, the units of measurement are also appropriately adjusted. This ensures that the integrity and accuracy of the recipe are maintained, providing a more realistic and practical scaling function. For example, if a recipe originally called for 1 cup of flour, scaling by a factor of 0.5 would appropriately adjust the measurement to 0.5 cups, ensuring users have precise and clear instructions regardless of the scale applied.
+The recent feedback from the lecturer was thoroughly implemented to enhance user experience and provide better usability. One of the major enhancements was providing explanations to the user regarding calories and food groups. This was achieved by adding text blocks in the GUI that describe what calories are, the significance of different calorie ranges, and how food groups classify foods according to their nutritional value. This information helps users make more informed choices when creating their recipes.
 
-The second major enhancement was adding a **Confirmation Before Clearing Data** feature. Initially, the application allowed users to clear all recipe data with a single command, which posed a risk of accidental data loss. To address this, a confirmation prompt was added to the clear recipe function. Now, when users attempt to clear all recipe data, they are prompted to confirm their action. This additional step helps prevent accidental deletions by ensuring that the user intentionally wants to clear the data. This feature significantly improves the user experience by adding a layer of security and reducing the chances of inadvertent data loss, which can be particularly useful in scenarios where multiple recipes have been inputted and need careful management.
-
+Additionally, I updated the application to include detailed calorie alerts based on specific ranges. When a recipe is added, the application now displays a message that informs users whether the recipe is low, moderate, or high in calories. For example, if the total calories are less than 200, a message will inform the user that the recipe is suitable for a snack. If the calories are between 200 and 500, the message indicates that the recipe is suitable for a balanced meal. For recipes with more than 500 calories, the message advises that the recipe should be consumed sparingly. These detailed alerts provide users with better insights into the nutritional value of their recipes, ensuring they are well-informed about their dietary choices.
 
 ## References
 
