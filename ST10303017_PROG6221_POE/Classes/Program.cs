@@ -20,7 +20,6 @@ namespace ST10303017_PROG6221_POE
         static void Main(string[] args)
         {
             Classes.RecipeManager recipeManager = new Classes.RecipeManager(); // Create a new recipe object
-            recipeManager.recipeMenu(); // Call the recipe menu method
         }
         //---------------------------------------------------------------------------------------------------//
     }
